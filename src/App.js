@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import {Switch, Route, Link} from 'react-router-dom'; 
 import './App.css';
+import Form from './Form.js';
 
 const initialFormState = {
   name: '', 
@@ -10,9 +11,6 @@ const initialFormState = {
   topping2: false, 
   special: ''
 }
-
-
-
 
 
 
@@ -30,7 +28,9 @@ const App = () => {
   }, [])
 
   const changeHandler = (event) => {
-    console.log(event.target.name, event.target.value)
+    console.log(event.target.name, event.target.value, event.target.checked)
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value; 
+    setForm({...form, [event.target.name]: value})
   }
 
 
@@ -68,6 +68,50 @@ const App = () => {
               })
             }
             </form>
+
+
+
+            {/**Checkbox */}
+            <h4>Toppings:</h4>
+            <label>
+              Jalapenos 
+              <input 
+              onChange={changeHandler}
+              type="checkbox" 
+              name="topping1" 
+              checked={form.topping1}>
+              </input>
+            </label><br />
+
+            <label>
+              Extra Cheese 
+              <input 
+              onChange={changeHandler}
+              type="checkbox" 
+              name="topping1" 
+              checked={form.topping1}>
+              </input>
+            </label><br />
+
+            <label>
+              Sausage 
+              <input 
+              onChange={changeHandler}
+              type="checkbox" 
+              name="topping1" 
+              checked={form.topping1}>
+              </input>
+            </label><br />
+
+            <label>
+              Pepperoni 
+              <input 
+              onChange={changeHandler}
+              type="checkbox" 
+              name="topping1" 
+              checked={form.topping1}>
+              </input>
+            </label><br />
         </Route>
       </Switch>
     </div>
