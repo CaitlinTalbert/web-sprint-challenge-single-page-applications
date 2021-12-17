@@ -25,8 +25,9 @@ const initialFormErrors = {
 const schema = yup.object().shape({
   name: yup
     .string()
-    .required("name must be at least 2 characters")
-    .min(2, "name must be at least 2 characters" ),
+    .trim()
+    .required('name must be at least 2 characters')
+    .min(2, 'name must be at least 2 characters'),
   size: yup
     .string()
     .required("Please select a size"), 
@@ -47,6 +48,7 @@ const App = () => {
   const [pizzaForm, setPizzaForm] = useState([])
   const [form, setForm] = useState(initialFormState)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [disabled, setDisabled] = useState(true)
 
   /**useEffect(() => {
     axios.get('https://reqres.in/api/orders')
@@ -62,7 +64,18 @@ const App = () => {
       .validate(value)
       .then(() => {
         console.log('form is invalid')
-      }).catch(() => {
+        setFormErrors({
+          ...formErrors, 
+          [name]: ''
+        })
+        setDisabled(false)
+      }).catch((err) => {
+        console.log(err)
+        setFormErrors({
+          ...formErrors, 
+          [name]: err.errors[0]
+        })
+        setDisabled(true)
         console.log('form is valid')
       })
   }
@@ -77,9 +90,6 @@ const App = () => {
       //setPizzaForm([result.data, ...pizzaForm])
     })
   }
-
-
-
 
 
   const changeHandler = (event) => {
@@ -133,7 +143,8 @@ const App = () => {
               onChange={changeHandler}
               type="checkbox" 
               name="topping1" 
-              checked={form.topping1}>
+              checked={form.topping1}
+              >
               </input>
             </label><br />
 
@@ -176,8 +187,25 @@ const App = () => {
               type="text">
               </input><br />
             </label>
-            <button id="order-button"type="submit">Add to Order</button>
+
+            <label>
+              <h4>Any Special Instructions?</h4>
+              <input
+                onChange={changeHandler}
+                name="special"
+                value={form.special}
+                id="special-text"
+                type="text">
+                </input><br />
+            </label>
+
+
+
+
+
+            <button id="order-button" type="submit" disabled={disabled}>Add to Order</button>
           </form>
+
             
         </Route>
       </Switch>
