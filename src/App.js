@@ -57,24 +57,13 @@ const App = () => {
         <h1>Lambda Eats</h1>
         <nav>
           <Link to="/">Home Page</Link><br />
-          <Link to="/pizza">Form</Link><br />
+          <Link to="/pizza" id="order-pizza">Order pizza here!</Link><br />
           
         </nav>
       </header>
       <Switch>
         <Route exact path="/">
-          <form onSubmit={submitHandler}>
-            <label>
-              <input 
-              onChange={changeHandler}
-              name="name" 
-              value={form.name} 
-              id="name-input" 
-              type="text">
-              </input>
-            </label>
-            <button id="order-pizza"type="submit">Click here to order some Pizza</button>
-          </form>
+      
         </Route>
         <Route exact path="/pizza">
           <form id="pizza-form">
@@ -167,3 +156,20 @@ const App = () => {
 
 };
 export default App;
+
+
+
+
+/**
+    <form onSubmit={submitHandler}>
+            <label>
+              <input 
+              onChange={changeHandler}
+              name="name" 
+              value={form.name} 
+              id="name-input" 
+              type="text">
+              </input>
+            </label>
+            <button id="order-pizza"type="submit">Click here to order some Pizza</button>
+          </form> */
