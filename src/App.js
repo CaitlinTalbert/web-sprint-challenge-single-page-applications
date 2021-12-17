@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import {Switch, Route, Link} from 'react-router-dom'; 
 import './App.css';
 import Form from './Form.js';
+import * as yup from 'yup';
 
 const initialFormState = {
   name: '', 
@@ -12,6 +13,32 @@ const initialFormState = {
   special: ''
 }
 
+const initialFormErrors = {
+  name: '', 
+  size: '', 
+  topping1: false, 
+  topping2: false, 
+  special: ''
+}
+
+
+const schema = yup.object().shape({
+  name: yup
+    .string()
+    .required("name must be at least 2 characters")
+    .min(2, "name must be at least 2 characters" ),
+  size: yup
+    .string()
+    .required("Please select a size"), 
+  topping1: yup
+    .boolean()
+    .oneOf([true, false]),
+  topping2: yup
+    .boolean()
+    .oneOf([true, false]),
+  special: yup
+    .string(), 
+})
 
 
 const App = () => {
@@ -19,6 +46,7 @@ const App = () => {
   
   const [pizzaForm, setPizzaForm] = useState([])
   const [form, setForm] = useState(initialFormState)
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
 
   /**useEffect(() => {
     axios.get('https://reqres.in/api/orders')
@@ -28,7 +56,16 @@ const App = () => {
       })
   }, [])
 */
-
+  const validate = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        console.log('form is invalid')
+      }).catch(() => {
+        console.log('form is valid')
+      })
+  }
 
   const submitHandler = (event) => {
     event.preventDefault()
@@ -50,6 +87,7 @@ const App = () => {
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value; 
     setForm({...form, [event.target.name]: value})
     setPizzaForm(initialFormState)
+    validate(event.target.name, value)
   }
 
 
