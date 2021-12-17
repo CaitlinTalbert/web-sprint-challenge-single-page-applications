@@ -36,6 +36,7 @@ const App = () => {
     axios.post('https://reqres.in/api/orders', form)
     .then((result) => {
       console.log(result.data)
+      setPizzaForm([result.data, ...pizzaForm])
     })
   }
 
@@ -55,8 +56,9 @@ const App = () => {
       <header>
         <h1>Lambda Eats</h1>
         <nav>
-          <Link to="/">Home Page</Link>
-          <Link to="/pizza">Form</Link>
+          <Link to="/">Home Page</Link><br />
+          <Link to="/pizza">Form</Link><br />
+          
         </nav>
       </header>
       <Switch>
@@ -71,7 +73,7 @@ const App = () => {
               type="text">
               </input>
             </label>
-            <button id="order-pizza"type="submit">Order Pizza!</button>
+            <button id="order-pizza"type="submit">Click here to order some Pizza</button>
           </form>
         </Route>
         <Route exact path="/pizza">
@@ -141,6 +143,19 @@ const App = () => {
               checked={form.topping1}>
               </input>
             </label><br />
+            <form onSubmit={submitHandler}>
+            <label>
+              <input 
+              onChange={changeHandler}
+              name="name" 
+              value={form.name} 
+              id="name-input" 
+              type="text">
+              </input>
+            </label>
+            <button id="order-button"type="submit">Add to Order</button>
+          </form>
+            
         </Route>
       </Switch>
     </div>
