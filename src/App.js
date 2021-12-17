@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import {Switch, Route, Link} from 'react-router-dom'; 
 import './App.css';
-import Form from './Form.js';
 import * as yup from 'yup';
 
 const initialFormState = {
@@ -117,8 +116,6 @@ const App = () => {
         </Route>
         <Route exact path="/pizza">
           <form id="pizza-form">
-            
-            </form>
             {/**Dropdown */}
             <h4>Select Pizza Size</h4>
             <label>Pizza size:
@@ -176,7 +173,9 @@ const App = () => {
               name="topping1" 
               checked={form.topping1}>
               </input>
-            </label><br />
+            </label>
+            </form>
+            <br />
             <form onSubmit={submitHandler}>
             <label>
               <input 
@@ -198,15 +197,9 @@ const App = () => {
                 type="text">
                 </input><br />
             </label>
-
-
-
-
-
             <button id="order-button" type="submit" disabled={disabled}>Add to Order</button>
+           
           </form>
-
-            
         </Route>
       </Switch>
     </div>
