@@ -16,6 +16,7 @@ const initialFormState = {
 
 const App = () => {
 
+  
   const [pizzaForm, setPizzaForm] = useState([])
   const [form, setForm] = useState(initialFormState)
 
@@ -36,7 +37,7 @@ const App = () => {
     axios.post('https://reqres.in/api/orders', form)
     .then((result) => {
       console.log(result.data)
-      setPizzaForm([result.data, ...pizzaForm])
+      //setPizzaForm([result.data, ...pizzaForm])
     })
   }
 
@@ -48,6 +49,7 @@ const App = () => {
     //console.log(event.target.name, event.target.value, event.target.checked)
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value; 
     setForm({...form, [event.target.name]: value})
+    setPizzaForm(initialFormState)
   }
 
 
@@ -67,18 +69,12 @@ const App = () => {
         </Route>
         <Route exact path="/pizza">
           <form id="pizza-form">
-            {
-              pizzaForm.map((pizzaForm, index) => {
-                return (
-                  <p key={`formId${pizzaForm.id}`}>{pizzaForm.name}</p>
-                )
-              })
-            }
+            
             </form>
             {/**Dropdown */}
             <h4>Select Pizza Size</h4>
             <label>Pizza size:
-              <select 
+              <select id="size-dropdown"
                 onChange={changeHandler}
                 name="size"
                 >
@@ -140,7 +136,7 @@ const App = () => {
               value={form.name} 
               id="name-input" 
               type="text">
-              </input>
+              </input><br />
             </label>
             <button id="order-button"type="submit">Add to Order</button>
           </form>
@@ -172,4 +168,15 @@ export default App;
               </input>
             </label>
             <button id="order-pizza"type="submit">Click here to order some Pizza</button>
-          </form> */
+          </form> 
+          \
+          
+          
+          
+          {
+              pizzaForm.map((pizzaForm, index) => {
+                return (
+                  <p key={`formId${pizzaForm.id}`}>{pizzaForm.name}</p>
+                )
+              })
+            }*/
