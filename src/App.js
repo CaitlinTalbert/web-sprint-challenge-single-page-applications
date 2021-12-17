@@ -19,16 +19,32 @@ const App = () => {
   const [pizzaForm, setPizzaForm] = useState([])
   const [form, setForm] = useState(initialFormState)
 
-  useEffect(() => {
+  /**useEffect(() => {
     axios.get('https://reqres.in/api/orders')
       .then((res) => {
         console.log(res.data.data)
         setPizzaForm(res.data.data)
       })
   }, [])
+*/
+
+
+  const submitHandler = (event) => {
+    event.preventDefault()
+    console.log("Submitted:", form)
+
+    axios.post('https://reqres.in/api/orders', form)
+    .then((result) => {
+      console.log(result.data)
+    })
+  }
+
+
+
+
 
   const changeHandler = (event) => {
-    console.log(event.target.name, event.target.value, event.target.checked)
+    //console.log(event.target.name, event.target.value, event.target.checked)
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value; 
     setForm({...form, [event.target.name]: value})
   }
@@ -45,7 +61,7 @@ const App = () => {
       </header>
       <Switch>
         <Route exact path="/">
-          <form>
+          <form onSubmit={submitHandler}>
             <label>
               <input 
               onChange={changeHandler}
