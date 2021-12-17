@@ -68,7 +68,20 @@ const App = () => {
               })
             }
             </form>
+            {/**Dropdown */}
+            <h4>Select Pizza Size</h4>
+            <label>Pizza size:
+              <select 
+                onChange={changeHandler}
+                name="size"
+                >
+                <option value=''>--Select an option--</option>
+                <option value='small'>Small</option>
+                <option value='medium'>Medium</option>
+                <option value='large'>Large</option>
 
+                </select>
+            </label>
 
 
             {/**Checkbox */}
