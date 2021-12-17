@@ -35,31 +35,45 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
-1. How would you explain form validation to someone who has never programmed before?
-1. In 1-2 sentences, define end to end testing.
+
+This hook allows you to add nested routes to your application so you can change one parameter in the URL without having to 
+change the entire thing. So if you wanted to change the router from an "about" page to "home", it would not break the webpage.
+
+2. How would you explain form validation to someone who has never programmed before?
+
+Basically after your data has been declared, it needs to be validated. The data can be declared using a schema, and that defines 
+what the form will look like and how the data should be validated. Validation can help return errors in your code so you 
+know what to fix or if a link or text box isn't working. 
+
+3. In 1-2 sentences, define end to end testing.
+
+End to end testing is a process that looks at the entire user experience to see if the user can accomplish an action like 
+submitting a form, or checking things off in a checkbox. This testing uses cypress which will help see if the webpage is
+working from a user experience and will give you feedback. 
+
 
 ## Instructions
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!)
-- [ ] Implement the project on the main branch, committing changes regularly
-- [ ] Push commits: `git push origin main`
-- [ ] PUSH EVERYTHING TO THE MAIN BRANCH
+- [x] Create a forked copy of this project
+- [x] Clone your OWN version of the repository (Not Lambda's by mistake!)
+- [x] Implement the project on the main branch, committing changes regularly
+- [x] Push commits: `git push origin main`
+- [x] PUSH EVERYTHING TO THE MAIN BRANCH
 
 ### Task 2: Project Requirements
 
 Your finished project must include all of the following requirements:
 
-- [ ] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable but must have an id of "order-pizza")
-- [ ] A order form that has a "/pizza" route and shows the form
-- [ ] A form with an id of "pizza-form"
-- [ ] A name text input field with an id of "name-input"
+- [x] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable but must have an id of "order-pizza")
+- [x] A order form that has a "/pizza" route and shows the form
+- [x] A form with an id of "pizza-form"
+- [x] A name text input field with an id of "name-input"
 - [ ] Validation for name and the error message is "name must be at least 2 characters" (Use this exact error message to make sure tests pass) ::: VERY IMPORTANT TO USE THAT EXACT ERROR MESSAGE (casing included!)
-- [ ] A dropdown for pizza size with an id of "size-dropdown"
-- [ ] A checklist for toppings - at least 4 (hint: name each separately!)
-- [ ] Text input for special instructions with an id of "special-text"
+- [x] A dropdown for pizza size with an id of "size-dropdown"
+- [x] A checklist for toppings - at least 4 (hint: name each separately!)
+- [x] Text input for special instructions with an id of "special-text"
 - [ ] An Add to Order button that has an id of "order-button" and that submits form and returns a database record of name, size, toppings and special instructions
 
 Data should look something like
@@ -81,9 +95,9 @@ there is a key for each of the toppings and they are booleans
 
 Implement the following tests in Cypress:
 
-- [ ] test that you can add text to the box
-- [ ] test that you can select multiple toppings
-- [ ] test that you can submit the form
+- [x] test that you can add text to the box
+- [x] test that you can select multiple toppings
+- [x] test that you can submit the form
 
 In your solution, it is essential that you follow best practices and produce clean and professional results. You will be scored on your adherence to proper code style and good organization. Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your work. It is better to submit a challenge that meets MVP than one that attempts too much and does not.
 
