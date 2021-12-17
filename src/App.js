@@ -49,14 +49,6 @@ const App = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(true)
 
-  /**useEffect(() => {
-    axios.get('https://reqres.in/api/orders')
-      .then((res) => {
-        console.log(res.data.data)
-        setPizzaForm(res.data.data)
-      })
-  }, [])
-*/
   const validate = (name, value) => {
     yup
       .reach(schema, name)
@@ -178,6 +170,7 @@ const App = () => {
             <br />
             <form onSubmit={submitHandler}>
             <label>
+              <h4>Name for the order:</h4>
               <input 
               onChange={changeHandler}
               name="name" 
@@ -197,8 +190,7 @@ const App = () => {
                 type="text">
                 </input><br />
             </label>
-            <button id="order-button" type="submit" disabled={disabled}>Add to Order</button>
-           
+            <button id="order-button" name= "submitBtn" type="submit" disabled={disabled}>Add to Order</button>
           </form>
         </Route>
       </Switch>
@@ -211,31 +203,3 @@ const App = () => {
 
 };
 export default App;
-
-
-
-
-/**
-    <form onSubmit={submitHandler}>
-            <label>
-              <input 
-              onChange={changeHandler}
-              name="name" 
-              value={form.name} 
-              id="name-input" 
-              type="text">
-              </input>
-            </label>
-            <button id="order-pizza"type="submit">Click here to order some Pizza</button>
-          </form> 
-          \
-          
-          
-          
-          {
-              pizzaForm.map((pizzaForm, index) => {
-                return (
-                  <p key={`formId${pizzaForm.id}`}>{pizzaForm.name}</p>
-                )
-              })
-            }*/
