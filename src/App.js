@@ -158,7 +158,7 @@ const App = () => {
             </label><br />
 
             <label>
-              Pepperoni 
+              Pepperonis
               <input 
               onChange={changeHandler}
               type="checkbox" 
